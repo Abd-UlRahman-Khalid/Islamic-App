@@ -19,7 +19,15 @@ class MyThemeData {
             fontSize: 25,
             fontWeight: FontWeight.bold,
             color: colorGold)
-      ));
+      ),
+     bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: colorGold,
+     selectedItemColor: colorBlack,
+       unselectedItemColor: Colors.white,
+  )
+
+  );
+
   static ThemeData dartTheme = ThemeData(
       scaffoldBackgroundColor: Colors.transparent,
       appBarTheme: AppBarTheme(
