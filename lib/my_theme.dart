@@ -9,6 +9,9 @@ class MyThemeData {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         centerTitle: true,
+        iconTheme: IconThemeData(
+          color: Colors.black
+        )
       ),
       textTheme: TextTheme(
           headline1: TextStyle(
