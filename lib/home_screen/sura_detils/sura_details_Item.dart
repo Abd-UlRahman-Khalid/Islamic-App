@@ -11,7 +11,7 @@ class SuraDetailsItem extends StatelessWidget {
     return Text(ayaa,
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.subtitle1?.copyWith(
-              fontSize: 20,
+              fontSize: 30,
               color: MyThemeData.colorBlack,
               letterSpacing: .20,
             ));

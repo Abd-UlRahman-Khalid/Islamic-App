@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:islamic_app/home_screen/sura_detils/sura_details_Item.dart';
 import 'package:islamic_app/my_theme.dart';
 
-
 class suraDetailsScreen extends StatefulWidget {
   static const routename = 'SuraDetails';
 
@@ -17,9 +16,9 @@ class _suraDetailsScreenState extends State<suraDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)?.settings.arguments as suraDetailsArg;
-   if(verses.isEmpty){
-     loadFile(args.Index);
-   }
+    if (verses.isEmpty) {
+      loadFile(args.Index);
+    }
     return Stack(children: [
       Image.asset(
         'assets/images/main_background.png',
@@ -33,28 +32,38 @@ class _suraDetailsScreenState extends State<suraDetailsScreen> {
               style: Theme.of(context).textTheme.headline1,
             ),
           ),
-          body:verses.isEmpty?Center(child: CircularProgressIndicator()): ListView.separated(
-            separatorBuilder: (context,index)=>Divider(
-              color: MyThemeData.colorBlack,
-              endIndent: 40,
-              indent: 40,
-            ),
-              itemCount: verses.length,
-              itemBuilder: (_, index) {
-                return SuraDetailsItem(verses[index]);
-              }))
+          body: verses.isEmpty
+              ? Center(child: CircularProgressIndicator())
+              : Container(
+                  margin: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: MyThemeData.colorGold,width:2),
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(25),
+                        bottomLeft: Radius.circular(25),
+                      )),
+                  child: ListView.separated(
+                      separatorBuilder: (context, index) => Divider(
+                            color: MyThemeData.colorBlack,
+                            endIndent: 40,
+                            indent: 40,
+                          ),
+                      itemCount: verses.length,
+                      itemBuilder: (_, index) {
+                        return SuraDetailsItem(verses[index]);
+                      }),
+                ))
     ]);
   }
 
   void loadFile(int index) async {
-    String content = await rootBundle.loadString('assets/files/${index + 1}.txt');
+    String content =
+        await rootBundle.loadString('assets/files/${index + 1}.txt');
     List<String> lines = content.split('\n');
     print(lines);
 
     verses = lines;
-    setState(() {
-
-    });
+    setState(() {});
   }
 }
 
